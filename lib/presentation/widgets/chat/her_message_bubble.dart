@@ -46,7 +46,7 @@ class _ImageBubble extends StatelessWidget {
         'https://media.tenor.com/USRLS23Cb4UAAAAj/ogerpon-pokemon.gif',
         width: size.width * 0.7,
         height: 150,
-        fit: BoxFit.cover,
+        // fit: BoxFit.cover,
         loadingBuilder: (Rcontext, child, loadingProgress) {
           if (loadingProgress == null) return child;
 
