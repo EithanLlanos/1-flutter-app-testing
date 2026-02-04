@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_test_1/domain/entities/message.dart';
 
 class HerMessageBubble extends StatelessWidget {
-  const HerMessageBubble({super.key});
+  final Message message;
+
+  const HerMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +17,10 @@ class HerMessageBubble extends StatelessWidget {
             color: colors.primary,
             borderRadius: BorderRadius.circular(20),
           ),
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: Text(
-              'Ipsum',
+              message.text,
               style: TextStyle(color: Colors.white),
             ),
           ),
@@ -25,7 +28,9 @@ class HerMessageBubble extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        _ImageBubble(),
+        _ImageBubble(
+          imageUrl: message.imageUrl.toString(),
+        ),
 
         SizedBox(
           height: 10,
@@ -36,6 +41,9 @@ class HerMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
+  String imageUrl;
+  _ImageBubble({this.imageUrl = ''});
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -43,10 +51,11 @@ class _ImageBubble extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        'https://media.tenor.com/USRLS23Cb4UAAAAj/ogerpon-pokemon.gif',
+        imageUrl,
         width: size.width * 0.7,
         height: 150,
-        // fit: BoxFit.cover,
+        fit: BoxFit.cover,
+
         loadingBuilder: (Rcontext, child, loadingProgress) {
           if (loadingProgress == null) return child;
 
