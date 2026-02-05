@@ -23,7 +23,6 @@ class ChatProvider extends ChangeNotifier {
 
     if (text.endsWith('?')) {
       herReply();
-      return;
     }
 
     notifyListeners();
